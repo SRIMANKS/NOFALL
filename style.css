@@ -1,0 +1,201 @@
+body{
+    margin: 0px;
+    background-color:white;
+    font-family: 'Anek Latin', sans-serif;
+}
+.home{
+    position: absolute;
+    z-index: 50;
+    width:100vw;
+    height:100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.start{
+    width: 12em;
+    font-size: 1.2em;
+    padding: 1em;
+    background-color: black;
+    color: white;
+    border: 2px solid white;
+}
+.start:hover{
+    border: 2px solid #3C50B1;
+    color: crimson;
+    transition: 0.5s;
+}
+.start:active{
+    color: red;
+}
+.container{
+    overflow-x: hidden;
+}
+.box{
+    width:100vw;
+    height:100vh;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+canvas{
+    position: relative;
+    background: transparent;
+    outline: 1px solid black;
+
+}
+.life{
+    position: absolute;
+    top: 30px;
+    left:1em;
+    z-index: 40;
+    font-size: 3em;
+    color: white;
+}
+.currentscore{
+    top:30px;
+    position: absolute;
+    right:1em;
+    z-index: 40;
+    font-size: 3em;
+    color:white;
+}
+
+.home{
+    background-color: #111;
+    width: 100vw;
+    height: 100vh;
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+}
+#img1{
+    box-shadow: drop-shadow(0px 0px 10px black);
+}
+
+.bg{
+    background: url(/background.jpg);
+    background-size: cover;
+    background-position: top center;
+}
+path:nth-of-type(1){
+    stroke-dasharray: 888.4155883789062;
+    stroke-dashoffset: 888.4155883789062;
+    animation: reveal 2s ease forwards;
+
+}
+path:nth-of-type(2){
+    stroke-dasharray: 578.8652954101562;
+    stroke-dashoffset: 578.8652954101562;
+    animation: reveal 2s ease forwards;
+
+}
+path:nth-of-type(3){
+    stroke-dasharray: 567.8868408203125;
+    stroke-dashoffset: 567.8868408203125;
+    animation: reveal 2s ease forwards ;
+
+}
+path:nth-of-type(4){
+    stroke-dasharray: 620.2611083984375;
+    stroke-dashoffset: 620.2611083984375;
+    animation: reveal 2s ease forwards;
+}
+path:nth-of-type(5){
+    stroke-dasharray: 374.8818664550781;
+    stroke-dashoffset: 374.8818664550781;
+    animation: reveal 2s ease forwards;
+}
+path:nth-of-type(6){
+    stroke-dasharray: 374.8818664550781;
+    stroke-dashoffset: 374.8818664550781;
+    animation: reveal 2s ease forwards;
+}
+@keyframes reveal{
+    to{
+        stroke-dashoffset: 0;
+    }
+}
+
+@keyframes gover{
+    from{
+        transform: translateY(50%);
+        opacity: 0;
+    }
+    to{
+        transform: translateY(0%);
+        opacity: 1;
+    }
+}
+
+.blur{
+    filter: blur(20px);
+}
+.scorecard{
+    position: absolute;
+    margin-top: 30vh;
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    font-size: 1em;
+    color:coral;
+    width: 400px;
+    height: 450px;
+    background-color:#111;
+    border-radius: 25px;
+    animation: gover 1s ease forwards;
+}
+.thorn{
+    position: absolute;
+    width:100vw;
+    height:30px;
+    background: url(/thronelong.png);
+    background-size:cover;
+    background-repeat: no-repeat;
+    outline: 1px solid black;
+}
+.tryagain{
+    width: 80%;
+    font-size: 1.2em;
+    font-weight: bold;
+    color:coral;
+    background-color: #111;
+    border: 2px solid coral;
+    padding: 1em;
+}
+.tryagain:hover{
+    border: 2px solid #3C50B1;
+    cursor: pointer;
+    color: crimson;
+    transition: 1s;
+
+}
+
+.bg{
+    background-color: #111;
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 100vw;
+    height: 100vh;
+    position: absolute;
+}
+
+@media screen and (max-width: 700px){
+    svg{
+        transform: scale(0.52);
+    }
+    .currentscore{
+        font-size: 1.2em;
+        right: 0.5em;
+    }
+    .life{
+        font-size: 1.2em;
+        left: 0.5em;
+    }
+    .scorecard{
+        margin-top: 20vh;
+    }
+}
