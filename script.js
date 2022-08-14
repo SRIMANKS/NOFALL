@@ -30,12 +30,11 @@ tryagain = document.querySelector(".tryagain");
 //start button
 start = document.querySelector(".start");
 
-try{
+try {
   console.log(window.localStorage.getItem("highscore"));
-  }
-  catch(e){
-    window.localStorage.setItem("highscore",0);
-  }
+} catch (e) {
+  window.localStorage.setItem("highscore", 0);
+}
 
 life = 1;
 gamestart = false;
@@ -48,9 +47,17 @@ function game_start() {
   home.style.zIndex = -1;
   scorecard.style.display = "none";
   currentscore.innerText = `Score: ${points}`;
-  life = 2;
   list_of_hearts = [];
   list_of_platform = [];
+  current_life.innerText = `Life: ${life}`;
+  movespeed = 2;
+  if (canvas.width > 900) {
+    platformwidth = 170;
+    movespeed = 3.5;
+  }
+  ph.gravity = 3;
+  ph.speed = 2;
+  ph.jump = 10;
 }
 function game_over() {
   gamestart = false;
@@ -58,14 +65,15 @@ function game_over() {
   your_score.innerText = `Score: ${points}`;
   if (highscore < points) {
     highscore = points;
-    localStorage.setItem('highscore', highscore);
+    localStorage.setItem("highscore", highscore);
   }
-  highscore = localStorage.getItem('highscore');
+  highscore = localStorage.getItem("highscore");
   high_score.innerText = `highscore: ${highscore}`;
   scorecard.style.display = "flex";
   canvas.classList.toggle("blur");
   bg.classList.toggle("blur");
   points = 0;
+  life = 1;
 }
 
 start.addEventListener("click", () => {
@@ -124,8 +132,8 @@ class physics {
 
 class heart {
   constructor(width, height) {
-    this.x = Math.floor(20 + Math.random() * (width-20));
-    this.y = Math.floor(20 + Math.random() * (height-20));
+    this.x = Math.floor(20 + Math.random() * (width - 20));
+    this.y = Math.floor(20 + Math.random() * (height - 20));
   }
   draw() {
     var heart = new Image();
@@ -161,6 +169,16 @@ setInterval(() => {
     }, 8000);
   }
 }, 30000);
+
+setInterval(() => {
+  if (gamestart) {
+    ph.gravity = ph.gravity + 1;
+    ph.speed = ph.speed + 1;
+    ph.jump = ph.jump + 1;
+    movespeed = movespeed + 1;
+    console.log(ph.gravity);
+  }
+}, 20000);
 
 // main loop of the programe (120fps)
 setInterval(() => {
@@ -231,17 +249,21 @@ setInterval(() => {
     }
 
     if (b.y > innerHeight + b.radius) {
+      console.log(b.y);
       life--;
       current_life.innerText = `Life: ${life}`;
       console.log(life);
       if (life == 0) {
+        b.y = b.radius + 30;
+        b.x = canvas.width / 2;
         game_over();
       } else {
         b.y = b.radius + 30;
         b.x = canvas.width / 2;
       }
     }
-    if(b.y<45){
+    if (b.y < 45) {
+      console.log("gameoverertert");
       game_over();
     }
     b.draw();
